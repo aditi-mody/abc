@@ -78,6 +78,7 @@ body, .drop-zone{
 #fileInput{
     display: none;
     visibility: hidden;
+    /* browse button working even without visibility except Microsoft Edge */
 }
 .browseBtn{
     color: #0099cc;
