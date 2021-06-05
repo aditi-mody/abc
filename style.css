@@ -74,3 +74,11 @@ body, .drop-zone{
     align-items: center;
     margin-top: 10px;
 }
+
+#fileInput{
+    display: none;
+}
+.browseBtn{
+    color: #0099cc;
+    cursor: pointer;
+}
