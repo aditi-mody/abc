@@ -77,6 +77,7 @@ body, .drop-zone{
 
 #fileInput{
     display: none;
+    visibility: hidden;
 }
 .browseBtn{
     color: #0099cc;
