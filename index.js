@@ -2,7 +2,7 @@ const dropZone = document.querySelector(".drop-zone");
 const browseBtn = document.querySelector(".browseBtn");
 const fileinput = document.querySelector("#fileInput");
 
-const host = "https://innshare.herokuapp.com/";
+const host = "https://quicksharenodejs.herokuapp.com/";
 const uploadURL = `${host}api/files`;
 // const uploadURL = `${host}api/files`;
 
@@ -16,12 +16,12 @@ dropZone.addEventListener("dragover", (e)=>{
 });
 
 dropZone.addEventListener("dragleave", ()=>{
-    dropZone.classList.remove("dragged")
+    dropZone.classList.remove("dragged");
 });
 dropZone.addEventListener("drop", (e)=>{
     e.preventDefault();
     dropZone.classList.remove("dragged");
-    const files = e.dataTransfer.files
+    const files = e.dataTransfer.files;
     console.log(files);
     if(files.length){
         fileInput.files = files;
@@ -41,8 +41,10 @@ const uploadFile = ()=>{
 
     const xhr = new XMLHttpRequest();
     xhr.onreadystatechange = ()=>{
-        console.log(xhr.readyState)
-    }
+        if(xhr.readyState === XMLHttpRequest.DONE){
+            console.log(xhr.response);
+        }
+    };
 
     xhr.open("POST", uploadURL);
     xhr.send(formData);
