@@ -10,7 +10,7 @@ const sharingContainer = document.querySelector(".sharing-container");
 const fileURLInput = document.querySelector("#fileURL");
 const copyBtn = document.querySelector("#copyBtn");
 
-const host = "https://quicksharenodejs.herokuapp.com/";
+const host = "https://quicktransfer-nodejs.herokuapp.com/";
 const uploadURL = `${host}api/files`;
 // const uploadURL = `${host}api/files`;
 
