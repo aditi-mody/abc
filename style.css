@@ -1,6 +1,7 @@
 :root{
     --main-background-color: #dfdbd7;
     --border-color: #020202;
+    --container-width: 500px;
 }
 body, html{
     font-family: system-ui;
@@ -9,7 +10,8 @@ body, html{
     padding: 0;
     margin: 0;
 }
-body, .drop-zone{
+body, 
+.drop-zone, .upload-container{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -23,7 +25,7 @@ body, .drop-zone{
 }
 
 .drop-zone{
-    width: 500px;
+    width: var(--container-width);
     min-height: 200px;
     border: 2px dashed #00394d;
     margin: 30px;
@@ -82,5 +84,71 @@ body, .drop-zone{
 }
 .browseBtn{
     color: #0099cc;
+    cursor: pointer;
+}
+
+.progress-container{
+    width: var(--container-width);
+    height: 70px;
+    border: 2px solid #b3ecff;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    position: relative;
+    display: none;
+}
+
+.progress-container .bg-progress{
+    background: var(--main-background-color);
+    width: 0%;
+    height: 100%;
+    border-radius: 2%;
+    transform-origin: left;
+    transition: width .25s linear;
+    position: absolute;
+}
+ 
+.progress-container .inner-container{
+    position: absolute;
+    z-index: 1;
+    margin: 10px 15px;
+    width: Calc(100%-30px);
+}
+.percent-container{
+    font-size: 13px;
+    margin: 5px;
+    opacity: .8;
+}
+
+.sharing-container{
+    width: var(--container-width);
+    margin-bottom: 15px;
+    display: none;
+}
+.expire{
+    opacity: .7;
+    text-align: center;
+}
+.sharing-container .input-container{
+    position: relative;
+}
+
+.sharing-container .input-container input{
+    width: 100%;
+    border: 2px dashed var(--main-background-color);
+    border-radius: 45px;
+    padding: 10px 15px;
+    box-sizing: border-box;
+    font-size: 18px;
+    background: #f5fcff;
+    color: #0000008f;
+}
+
+.input-container img{
+    position: absolute;
+    height: 22px;
+    width: 31px;
+    top: 12px;
+    right: 7px;
+    background: #f7fddf;
     cursor: pointer;
 }
