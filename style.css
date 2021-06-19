@@ -9,6 +9,7 @@ body, html{
     height: 100%;
     padding: 0;
     margin: 0;
+    overflow: hidden;
 }
 body, 
 .drop-zone, .upload-container{
@@ -151,4 +152,24 @@ body,
     right: 7px;
     background: #f7fddf;
     cursor: pointer;
+}
+
+.toast {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translate(-50%, 60px);
+    padding: 10px 20px;
+    border-radius: 4px;
+    background: rosybrown;
+    color: #f5fcff;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    font-size: 17px;
+    transition: transform ease-in-out .2s;
+}
+
+@media screen and (max-width: 900px){
+    :root{
+        --container-width: 300px;
+    }
 }

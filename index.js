@@ -10,6 +10,10 @@ const sharingContainer = document.querySelector(".sharing-container");
 const fileURLInput = document.querySelector("#fileURL");
 const copyBtn = document.querySelector("#copyBtn");
 
+const toast = document.querySelector(".toast");
+
+const maxAllowedSize = 10 * 1024;
+
 const host = "https://quicktransfer-nodejs.herokuapp.com/";
 const uploadURL = `${host}api/files`;
 // const uploadURL = `${host}api/files`;
@@ -48,11 +52,31 @@ browseBtn.addEventListener("click", ()=>{
 copyBtn.addEventListener("click", ()=>{
     fileURLInput.select();
     document.execCommand("copy");
+    showToast("Copied to clipboard!");
 });
 
+const resetfileinput = ()=>{
+    fileInput.value= "";
+}
+
 const uploadFile = ()=>{
-    progressContainer.style.display = "block";
+    
+    if(fileInput.files.length > 1){
+        fileInput.value = "";
+        showToast("Only upload 1 file!");
+    }
+
     const file = fileInput.files[0];
+
+    if(file.size > maxAllowedSize){
+        showToast("Upload files should be less than 10kB!");
+        //upload size fixed to 10 kb as of now.
+        resetfileinput();
+        return;
+    }
+    progressContainer.style.display = "block";
+
+    
     const formData = new FormData();
     formData.append("myfile", file);
 
@@ -65,6 +89,11 @@ const uploadFile = ()=>{
     };
 
     xhr.upload.onprogress = updateProgess;
+
+    xhr.upload.onerror = ()=>{
+        fileInput.value = "";
+        showToast(`Error in upload: ${xhr.statusText}`);
+    }
 
     xhr.open("POST", uploadURL);
     xhr.send(formData);
@@ -85,3 +114,12 @@ const showLink = ({file: url})=>{
     fileURLInput.value = url;
 }
 
+let toastTimer;
+const showToast = (msg)=>{
+    toast.innerText = msg;
+    toast.style.transform = "translate(-50%, 0)";
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(()=>{
+        toast.style.transform = "translate(-50%, 60px)";
+    }, 2000);
+}
